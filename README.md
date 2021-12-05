@@ -1,4 +1,4 @@
-#### [🔗 Discord Link](https://discord.gg/stealer) - [📖 Terms](https://github.com/Stanley-GF/PirateStealer#terms) - [🔨 Builder](https://stealer.io/) - [💎 Premium](https://discord.gg/stealer) - [💡 Features](https://github.com/Stanley-GF/PirateStealer#features)
+#### [🔗 Discord Link](https://discord.gg/stealer) - [📖 Terms](https://github.com/Stanley-GF/PirateStealer#terms) - [🔨 Builder](https://stealer.re/) - [💎 Premium](https://discord.gg/stealer) - [💡 Features](https://github.com/Stanley-GF/PirateStealer#features)
 # PirateStealer
 Official PirateStealer repos
 
